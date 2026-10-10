@@ -1,0 +1,48 @@
+{
+  "rateCycle": {
+    "title": "RBI interest rate: cut in 2025, raised now",
+    "rbi": [
+      {
+        "d": "2025-01",
+        "v": 6.5
+      },
+      {
+        "d": "2025-02",
+        "v": 6.25
+      },
+      {
+        "d": "2025-04",
+        "v": 6.0
+      },
+      {
+        "d": "2025-06",
+        "v": 5.5
+      },
+      {
+        "d": "2025-12",
+        "v": 5.25
+      },
+      {
+        "d": "2026-10",
+        "v": 5.5
+      }
+    ],
+    "note": "The RBI cut its rate four times in 2025, from 6.50% to 5.25%, held it there at four meetings, then raised it on 7 Oct 2026. The US raised its rate on 16 Sep 2026.",
+    "status": "press"
+  },
+  "rupeeSides": {
+    "title": "A weak rupee (₹96): who loses, who gains",
+    "losers": [
+      "Oil companies and India's import bill",
+      "Students and families paying fees abroad",
+      "Companies with loans in dollars",
+      "Shoppers, as imported goods cost more"
+    ],
+    "winners": [
+      "IT and service exporters (TCS AI revenue: $3.1 bn)",
+      "Families receiving money from abroad",
+      "GST collected on imports",
+      "Exporters, where US tariffs allow"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+[
+  { "name": "Demo paper, Economy", "short": "DEMO-ECO", "url": "file:test/fixtures/econ.xml", "kind": "econ", "official": false },
+  { "name": "Demo paper, National", "short": "DEMO-NAT", "url": "file:test/fixtures/general.xml", "kind": "general", "official": false },
+  { "name": "PIB demo", "short": "PIB", "url": "file:test/fixtures/pib.xml", "kind": "econ", "official": true }
+]

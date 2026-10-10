@@ -1,0 +1,121 @@
+[
+  {
+    "name": "Economic Times, Economy",
+    "short": "ET-ECO",
+    "url": "https://economictimes.indiatimes.com/news/economy/rssfeeds/1373380680.cms",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "Economic Times, Markets",
+    "short": "ET-MKT",
+    "url": "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "Mint, Economy",
+    "short": "MINT-ECO",
+    "url": "https://www.livemint.com/rss/economy",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "Mint, Markets",
+    "short": "MINT-MKT",
+    "url": "https://www.livemint.com/rss/markets",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "The Hindu, Economy",
+    "short": "HINDU-ECO",
+    "url": "https://www.thehindu.com/business/Economy/feeder/default.rss",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "The Hindu, Markets",
+    "short": "HINDU-MKT",
+    "url": "https://www.thehindu.com/business/markets/feeder/default.rss",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "Indian Express, Business",
+    "short": "IE-BIZ",
+    "url": "https://indianexpress.com/section/business/feed/",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "Times of India, Business",
+    "short": "TOI-BIZ",
+    "url": "https://timesofindia.indiatimes.com/rssfeeds/1898055.cms",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "Business Standard, Economy",
+    "short": "BS-ECO",
+    "url": "https://www.business-standard.com/rss/economy-102.rss",
+    "kind": "econ",
+    "official": false
+  },
+  {
+    "name": "PIB, all ministries",
+    "short": "PIB",
+    "url": "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+    "kind": "econ",
+    "official": true
+  },
+  {
+    "name": "RBI press releases",
+    "short": "RBI",
+    "url": "https://www.rbi.org.in/pressreleases_rss.xml",
+    "kind": "econ",
+    "official": true
+  },
+  {
+    "name": "The Hindu, National",
+    "short": "HINDU-NAT",
+    "url": "https://www.thehindu.com/news/national/feeder/default.rss",
+    "kind": "general",
+    "official": false
+  },
+  {
+    "name": "The Hindu, International",
+    "short": "HINDU-INT",
+    "url": "https://www.thehindu.com/news/international/feeder/default.rss",
+    "kind": "general",
+    "official": false
+  },
+  {
+    "name": "Indian Express, India",
+    "short": "IE-IND",
+    "url": "https://indianexpress.com/section/india/feed/",
+    "kind": "general",
+    "official": false
+  },
+  {
+    "name": "Indian Express, World",
+    "short": "IE-WLD",
+    "url": "https://indianexpress.com/section/world/feed/",
+    "kind": "general",
+    "official": false
+  },
+  {
+    "name": "Times of India, India",
+    "short": "TOI-IND",
+    "url": "https://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms",
+    "kind": "general",
+    "official": false
+  },
+  {
+    "name": "Times of India, World",
+    "short": "TOI-WLD",
+    "url": "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms",
+    "kind": "general",
+    "official": false
+  }
+]

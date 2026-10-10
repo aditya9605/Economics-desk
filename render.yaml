@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: economy-desk
+    runtime: node
+    plan: free
+    buildCommand: echo "no build step"
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ACCESS_KEY
+        sync: false
+      - key: POLL_MINUTES
+        value: "15"

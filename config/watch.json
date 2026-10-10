@@ -1,0 +1,49 @@
+[
+  {
+    "date": "2026-10-12",
+    "label": "India's inflation for September",
+    "why": "Shows whether price rises are speeding up, as the RBI expects",
+    "source": "MoSPI release calendar",
+    "url": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1779709510470-ADVANCE%20RELEASE%20CALENDAR%202026-27%20Updated%2025.05.2026.pdf",
+    "official": true
+  },
+  {
+    "date": "2026-10-27",
+    "label": "US Fed interest-rate decision (27–28 Oct)",
+    "why": "If the US raises rates again, more money may leave India",
+    "source": "Federal Reserve calendar",
+    "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+    "official": true
+  },
+  {
+    "date": "2026-10-28",
+    "label": "India's factory output (IIP) for September",
+    "why": "Shows how factories, mines and power plants are doing",
+    "source": "MoSPI release calendar",
+    "url": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1779709510470-ADVANCE%20RELEASE%20CALENDAR%202026-27%20Updated%2025.05.2026.pdf",
+    "official": true
+  },
+  {
+    "date": "2026-11-03",
+    "label": "US midterm elections",
+    "why": "Trump's promise not to attack Iran runs until this date",
+    "source": "Al-Monitor (Reuters)",
+    "url": "https://www.al-monitor.com/originals/2026/10/trump-says-us-will-not-attack-iran-midterm-elections-november"
+  },
+  {
+    "date": "2026-11-30",
+    "label": "India's GDP for July–September",
+    "why": "The RBI expects 7.2% growth for this quarter",
+    "source": "MoSPI release calendar",
+    "url": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1779709510470-ADVANCE%20RELEASE%20CALENDAR%202026-27%20Updated%2025.05.2026.pdf",
+    "official": true
+  },
+  {
+    "date": "2026-12-02",
+    "label": "RBI interest-rate decision (2–4 Dec)",
+    "why": "Will the RBI raise rates again or pause?",
+    "source": "RBI MPC schedule",
+    "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62422",
+    "official": true
+  }
+]

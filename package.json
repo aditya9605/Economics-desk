@@ -1,0 +1,14 @@
+{
+  "name": "economy-desk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal live economics dashboard: news, cross-domain linkages and classroom hooks.",
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "demo": "SOURCES_FILE=test/fixtures/sources.json CLAUDE_MOCK=1 MAX_AGE_HOURS=100000 DATA_FILE=data/demo-state.json node server.js",
+    "test": "node test/run-tests.js",
+    "snapshot": "node tools/build-artifact.js"
+  }
+}

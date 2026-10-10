@@ -1,0 +1,809 @@
+{
+  "mode": "snapshot",
+  "generatedAt": "2026-10-10T10:15:00.000Z",
+  "editionLabel": "Saturday 10 October 2026 · researched 3:45 pm IST",
+  "pulse": [
+    {
+      "id": "repo",
+      "label": "RBI repo rate",
+      "value": "5.50",
+      "unit": "%",
+      "change": "+0.25 point on 7 Oct",
+      "dir": "up",
+      "tone": "watch",
+      "note": "The rate at which the RBI lends to banks. Raised to fight rising prices; the first rise since February 2023.",
+      "asOf": "7 Oct 2026",
+      "status": "press",
+      "source": "RBI policy, as reported by PTI",
+      "url": "https://www.dtnext.in/news/business/highlights-of-rbis-october-bi-monthly-monetary-policy",
+      "spark": [
+        6.5,
+        6.25,
+        6.0,
+        5.5,
+        5.25,
+        5.25,
+        5.5
+      ]
+    },
+    {
+      "id": "cpi",
+      "label": "Retail inflation (CPI)",
+      "value": "4.8",
+      "unit": "%",
+      "change": "August; was 4.5% in July",
+      "dir": "up",
+      "tone": "bad",
+      "note": "How fast prices are rising for households. The RBI aims for 4%. The September figure comes out on Monday 12 Oct.",
+      "asOf": "Aug 2026",
+      "status": "press",
+      "source": "Tradingpedia (citing MoSPI data)",
+      "url": "https://www.tradingpedia.com/2026/09/16/rupee-steadies-as-inflation-rises-and-trade-gap-shrinks/",
+      "spark": [
+        4.5,
+        4.8
+      ]
+    },
+    {
+      "id": "fed",
+      "label": "US interest rate (Fed)",
+      "value": "3.75–4.00",
+      "unit": "%",
+      "change": "+0.25 point on 16 Sep",
+      "dir": "up",
+      "tone": "watch",
+      "note": "Set by the US Federal Reserve, the US central bank. Vote was 12–0; first rise since July 2023. Next decision 27–28 Oct.",
+      "asOf": "16 Sep 2026",
+      "status": "official",
+      "source": "Federal Reserve FOMC statement",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+    },
+    {
+      "id": "sensex",
+      "label": "Sensex",
+      "value": "72,472",
+      "unit": "",
+      "change": "+879 points (+1.23%) on 9 Oct",
+      "dir": "up",
+      "tone": "good",
+      "note": "India's main share-market index. It rose after two days of falls. Small chart: closing levels on 30 Sep, 8 Oct and 9 Oct. The Nifty 50 closed at 22,520 (+1.3%).",
+      "asOf": "9 Oct 2026 close",
+      "status": "press",
+      "source": "Business Standard",
+      "url": "https://www.business-standard.com/amp/markets/news/stock-market-live-october-9-nse-bse-sensex-today-nifty50-gift-nifty-crude-oil-prices-it-stocks-today-126100900099_1.html",
+      "spark": [
+        72480.29,
+        71593.24,
+        72472.33
+      ]
+    },
+    {
+      "id": "brent",
+      "label": "Crude oil (Brent)",
+      "value": "103",
+      "unit": "$/bbl",
+      "change": "December contract, 9 Oct afternoon",
+      "dir": "flat",
+      "tone": "bad",
+      "note": "The world benchmark oil price. Above $100 because of the Iran war; it eased after Trump's statement on 8 Oct.",
+      "asOf": "9 Oct 2026, 3:37 pm",
+      "status": "press",
+      "source": "Kotak Neo market report",
+      "url": "https://www.kotakneo.com/news/market-news/sensex-and-nifty-recover-after-sharp-sell-off/"
+    },
+    {
+      "id": "inr",
+      "label": "Rupee per dollar",
+      "value": "95.95",
+      "unit": "₹/$",
+      "change": "A dollar costs about 8% more rupees than a year ago",
+      "dir": "down",
+      "tone": "bad",
+      "note": "Level when trading opened on 1 Oct 2026. A year earlier it was 88.67 (13 Oct 2025, All India Radio). I could not find a confirmed figure for 9 Oct.",
+      "asOf": "1 Oct 2026 open",
+      "status": "press",
+      "source": "Kotak Neo; year-ago level from AIR",
+      "url": "https://www.kotakneo.com/news/market-news/stock-market-update-1-october-2026-sensex-nifty/"
+    },
+    {
+      "id": "gdp",
+      "label": "GDP growth",
+      "value": "7.8",
+      "unit": "%",
+      "change": "April–June 2026",
+      "dir": "up",
+      "tone": "good",
+      "note": "How fast the economy grew. Faster than the RBI expected. The RBI's forecast for the full year is 7.1%.",
+      "asOf": "Released end-Aug 2026",
+      "status": "press",
+      "source": "MoSPI data, as reported",
+      "url": "https://www.republicworld.com/business/india-s-gdp-grows-by-78-in-apr-jun-quarter-beats-rbi-s-estimate-2026-08-31-135949"
+    },
+    {
+      "id": "gst",
+      "label": "GST collected, September",
+      "value": "2.04",
+      "unit": "₹ lakh cr",
+      "change": "+14.7% from a year ago",
+      "dir": "up",
+      "tone": "good",
+      "note": "GST on imports rose 25.9%; GST on sales within India rose 10.1%. Early figures that may be revised.",
+      "asOf": "Released 1 Oct 2026",
+      "status": "press",
+      "source": "Government data, as reported by Business Today",
+      "url": "https://businesstoday.in/latest/economy/story/september-gst-collections-rise-14-7-to-rs2-04-lakh-crore-558985-2026-10-01"
+    },
+    {
+      "id": "fpi",
+      "label": "Foreign investors in Indian shares, Sep",
+      "value": "−35,861",
+      "unit": "₹ cr",
+      "change": "They sold more than they bought",
+      "dir": "down",
+      "tone": "bad",
+      "note": "NSDL data. Shows money leaving India's share market.",
+      "asOf": "Sep 2026",
+      "status": "press",
+      "source": "NSDL data, as reported by Kotak Neo",
+      "url": "https://www.kotakneo.com/news/market-news/sensex-and-nifty-recover-after-sharp-sell-off/"
+    },
+    {
+      "id": "fx",
+      "label": "India's dollar reserves",
+      "value": "765.9",
+      "unit": "$ bn",
+      "change": "Down $14.88 bn in the week to 18 Sep",
+      "dir": "down",
+      "tone": "watch",
+      "note": "Foreign currency held by the RBI. The biggest weekly fall in about two years, reportedly because the RBI sold dollars to support the rupee.",
+      "asOf": "Week ended 18 Sep 2026",
+      "status": "press",
+      "source": "RBI data, as reported by Economic Times and Bloomberg (via Digg)",
+      "url": "https://digg.com/world-business/ihpq6m18"
+    }
+  ],
+  "thread": {
+    "title": "Trump said the US won't attack Iran before November. Oil prices eased and the Sensex rose 879 points.",
+    "dek": "How a US decision about Iran affected India's oil bill, prices and share market within a day. Bargain buying and good IT results also helped the market.",
+    "nodes": [
+      {
+        "kind": "event",
+        "label": "Trump: no attack on Iran before the US elections on 3 Nov",
+        "note": "Social media post, 8 Oct",
+        "added": false
+      },
+      {
+        "kind": "channel",
+        "label": "Fear of war eases, oil prices dip",
+        "note": "Analysts linked the 9 Oct rally to cheaper oil",
+        "added": false
+      },
+      {
+        "kind": "variable",
+        "label": "India's oil import bill and the rupee",
+        "note": "India buys over 85% of its oil from abroad",
+        "added": false
+      },
+      {
+        "kind": "variable",
+        "label": "Risk of higher prices at home",
+        "note": "RBI expects 6% inflation in Oct–Dec",
+        "added": true
+      },
+      {
+        "kind": "outcome",
+        "label": "Sensex up 879 points, IT shares up 3%",
+        "note": "9 Oct; IT results and bargain buying helped too",
+        "added": false
+      }
+    ],
+    "classLine": "How can a US election affect an Indian home loan? Answer: through oil prices, then inflation, then the RBI's interest rate.",
+    "sources": [
+      {
+        "name": "Al-Monitor (Reuters)",
+        "url": "https://www.al-monitor.com/originals/2026/10/trump-says-us-will-not-attack-iran-midterm-elections-november"
+      },
+      {
+        "name": "Business Standard",
+        "url": "https://www.business-standard.com/amp/markets/news/stock-market-live-october-9-nse-bse-sensex-today-nifty50-gift-nifty-crude-oil-prices-it-stocks-today-126100900099_1.html"
+      },
+      {
+        "name": "OilPrice.com",
+        "url": "https://oilprice.com/Latest-Energy-News/World-News/India-Pulls-Back-From-Iraqi-Oil-as-Hormuz-Turns-Too-Dangerous.html"
+      }
+    ]
+  },
+  "stories": [
+    {
+      "id": "rbi-hike",
+      "kind": "economy",
+      "category": "Interest rates",
+      "headline": "RBI raises its key interest rate to 5.50% to fight rising prices",
+      "summary": "On 7 October, the RBI raised the repo rate by 0.25 percentage point to 5.50%. This is its first increase since February 2023. All six members of its Monetary Policy Committee voted for it. The RBI said it may raise rates again if needed and will not cut them soon. It expects prices to rise 5.2% this year and the economy to grow 7.1%.",
+      "marks": [
+        "5.50%",
+        "first increase since February 2023",
+        "All six members",
+        "5.2%",
+        "7.1%"
+      ],
+      "chain": [
+        {
+          "kind": "event",
+          "label": "Prices rising, oil above $100"
+        },
+        {
+          "kind": "channel",
+          "label": "RBI raises repo rate to 5.50%"
+        },
+        {
+          "kind": "variable",
+          "label": "Loan and deposit rates go up"
+        },
+        {
+          "kind": "outcome",
+          "label": "People borrow and spend a little less, so prices rise more slowly",
+          "added": true
+        }
+      ],
+      "impacts": {
+        "inflation": -1,
+        "growth": -1,
+        "rupee": 1,
+        "fiscal": -1,
+        "markets": -1,
+        "trade": 0
+      },
+      "eureka": "In 2025 the RBI cut rates four times. Within a year it has started raising them again. A big reason is a war thousands of kilometres away that pushed oil prices up.",
+      "concept": "How interest rates control inflation",
+      "syllabus": "GS3 · Monetary policy",
+      "status": "press",
+      "sources": [
+        {
+          "name": "Swarajya (RBI statement details)",
+          "url": "https://swarajyamag.com/economy/rbi-raises-repo-rate-to-55-per-cent-projects-fy27-growth-at-71-per-cent-and-inflation-at-52-per-cent"
+        },
+        {
+          "name": "DT Next (PTI)",
+          "url": "https://www.dtnext.in/news/business/highlights-of-rbis-october-bi-monthly-monetary-policy"
+        },
+        {
+          "name": "RBI press releases (policy listed 7 Oct)",
+          "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx",
+          "official": true
+        }
+      ],
+      "published": "2026-10-07",
+      "context": "The repo rate is the rate at which the RBI lends money to banks. When it goes up, banks usually raise their loan and deposit rates. Through 2025 the RBI cut this rate from 6.50% to 5.25% to support growth. Prices have now been rising for ten months in a row, with oil above $100 a barrel adding to the pressure."
+    },
+    {
+      "id": "fed-hike",
+      "kind": "economy",
+      "category": "World economy",
+      "headline": "The US raised its interest rate, and foreign money flowed out of India",
+      "summary": "On 16 September, the US central bank (the Federal Reserve) raised its interest rate to 3.75–4.00%, its first increase since 2023. When US rates rise, investors can earn more in America, so some pull money out of countries like India. In September, foreign investors sold ₹35,861 crore more Indian shares than they bought. The rupee stayed near 96 to the dollar.",
+      "marks": [
+        "3.75–4.00%",
+        "₹35,861 crore",
+        "near 96"
+      ],
+      "chain": [
+        {
+          "kind": "event",
+          "label": "US raises its interest rate"
+        },
+        {
+          "kind": "channel",
+          "label": "US investments pay more, dollar gets stronger"
+        },
+        {
+          "kind": "variable",
+          "label": "Foreign investors sell Indian shares"
+        },
+        {
+          "kind": "outcome",
+          "label": "Rupee falls; RBI sells dollars to steady it",
+          "added": true
+        }
+      ],
+      "impacts": {
+        "inflation": 1,
+        "growth": -1,
+        "rupee": -1,
+        "fiscal": 0,
+        "markets": -1,
+        "trade": 0
+      },
+      "eureka": "A vote in Washington can make money tighter in India without the RBI doing anything. The US does not set India's rates, but it sets the return that foreign investors compare India against.",
+      "concept": "Why US interest rates move the rupee",
+      "syllabus": "GS3 · External sector",
+      "status": "official",
+      "sources": [
+        {
+          "name": "Federal Reserve FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+          "official": true
+        },
+        {
+          "name": "Kotak Neo (FPI data)",
+          "url": "https://www.kotakneo.com/news/market-news/sensex-and-nifty-recover-after-sharp-sell-off/"
+        }
+      ],
+      "published": "2026-09-16",
+      "context": "The US Federal Reserve sets interest rates for the world's biggest economy. Its decisions move the dollar and the flow of investment around the world, so they affect India even though India's own rates are set by the RBI."
+    },
+    {
+      "id": "iran-oil",
+      "kind": "spillover",
+      "category": "War and oil",
+      "headline": "Trump says no US attack on Iran before November, and oil prices ease",
+      "summary": "On 8 October, US President Trump said the US will not attack Iran before the US elections on 3 November. The US–Iran war began in February. Attacks on oil tankers have made the Strait of Hormuz, a key sea route for oil, risky to use. In July India stopped loading some oil from Iraq and is buying more Russian oil, about 2.45 million barrels a day.",
+      "marks": [
+        "3 November",
+        "Strait of Hormuz",
+        "2.45 million barrels a day"
+      ],
+      "chain": [
+        {
+          "kind": "event",
+          "label": "Risk of a US strike on Iran falls"
+        },
+        {
+          "kind": "channel",
+          "label": "Oil prices ease"
+        },
+        {
+          "kind": "variable",
+          "label": "India's oil import bill"
+        },
+        {
+          "kind": "outcome",
+          "label": "Less pressure on the rupee, prices and interest rates",
+          "added": true
+        }
+      ],
+      "impacts": {
+        "inflation": -1,
+        "growth": 0,
+        "rupee": 1,
+        "fiscal": 0,
+        "markets": 1,
+        "trade": 1
+      },
+      "eureka": "India's oil bill now depends partly on the date of a US election. One narrow sea route carries a big share of India's inflation risk.",
+      "concept": "Supply shock: when costs push prices up",
+      "syllabus": "GS3 · Energy security; GS2 · IR",
+      "status": "press",
+      "sources": [
+        {
+          "name": "Al-Monitor (Reuters)",
+          "url": "https://www.al-monitor.com/originals/2026/10/trump-says-us-will-not-attack-iran-midterm-elections-november"
+        },
+        {
+          "name": "OilPrice.com",
+          "url": "https://oilprice.com/Latest-Energy-News/World-News/India-Pulls-Back-From-Iraqi-Oil-as-Hormuz-Turns-Too-Dangerous.html"
+        }
+      ],
+      "published": "2026-10-08",
+      "context": "India buys more than 85% of its oil from abroad. Before the war, about half of it came from the Middle East, much of it through the Strait of Hormuz. Any threat to that route raises the price India pays for oil."
+    },
+    {
+      "id": "cjp",
+      "kind": "spillover",
+      "category": "Protests and markets",
+      "headline": "Why the CJP protests did not shake the stock market",
+      "summary": "The Cockroach Janta Party (CJP), led by Abhijeet Dipke, began in anger over leaks in competitive exams and spread to Delhi, demanding the Education Minister's resignation. Activist Sonam Wangchuk fasted for 26 days, and a march to Parliament on 20 July turned violent. Analysts said the protests did not move share prices. In July, foreign investors bought ₹15,157 crore more Indian shares than they sold, even as the protests grew.",
+      "marks": [
+        "Cockroach Janta Party (CJP)",
+        "26 days",
+        "20 July",
+        "₹15,157 crore"
+      ],
+      "chain": [
+        {
+          "kind": "event",
+          "label": "Street protests in Delhi"
+        },
+        {
+          "kind": "channel",
+          "label": "Investors ask: will policy change?"
+        },
+        {
+          "kind": "variable",
+          "label": "Only policy, tax or spending changes matter",
+          "added": true
+        },
+        {
+          "kind": "outcome",
+          "label": "So far, little effect on shares"
+        }
+      ],
+      "impacts": {
+        "inflation": 0,
+        "growth": 0,
+        "rupee": 0,
+        "fiscal": 0,
+        "markets": 0,
+        "trade": 0
+      },
+      "eureka": "Markets react to changes in policy, not to noise on the street. In the very month the protests peaked, foreign investors were buying Indian shares.",
+      "concept": "Political risk and how investors judge it",
+      "syllabus": "GS3 · Capital markets; GS2 · Governance",
+      "status": "check",
+      "statusNote": "These reports are from July. I could not find October updates on the protest.",
+      "sources": [
+        {
+          "name": "Dynamite News",
+          "url": "https://www.dynamitenews.com/business/from-new-delhi-to-nse-how-cjp-protest-can-impact-stock-market"
+        },
+        {
+          "name": "Scroll",
+          "url": "https://scroll.in/latest/1094360/delhi-police-says-sonam-wangchuk-shifted-to-hospital-under-hc-order-cjp-alleges-he-was-detained"
+        },
+        {
+          "name": "Michigan Public (AP)",
+          "url": "https://www.michiganpublic.org/2026-07-24/indian-activist-wangchuk-ends-26-day-hunger-strike-as-cockroach-protesters-vow-to-press-on"
+        }
+      ],
+      "published": "2026-07-22",
+      "context": "Investors worry about protests when they might change government policy, taxes or spending. Analysts quoted at the time said these protests had not done that, so they mattered less to markets than oil prices, US interest rates and tariffs."
+    },
+    {
+      "id": "gst-rupee",
+      "kind": "economy",
+      "category": "Taxes",
+      "headline": "GST collection crossed ₹2 lakh crore, helped by tax on imports",
+      "summary": "The government collected ₹2.04 lakh crore in GST in September, 14.7% more than a year ago. GST on imported goods rose 25.9%, while GST on goods and services sold within India rose 10.1%. From April to September, GST on imports is up 27.1% and GST within India is up 6.1%. These are early figures and may change. The release does not explain the gap.",
+      "marks": [
+        "₹2.04 lakh crore",
+        "14.7%",
+        "25.9%",
+        "10.1%"
+      ],
+      "chain": [
+        {
+          "kind": "event",
+          "label": "A dollar costs about 8% more rupees than a year ago"
+        },
+        {
+          "kind": "channel",
+          "label": "GST on imports is charged on rupee value",
+          "added": true
+        },
+        {
+          "kind": "variable",
+          "label": "GST on imports rises"
+        },
+        {
+          "kind": "outcome",
+          "label": "Part of the rise may be the weak rupee, not more buying",
+          "added": true
+        }
+      ],
+      "impacts": {
+        "inflation": 0,
+        "growth": 0,
+        "rupee": 0,
+        "fiscal": 1,
+        "markets": 0,
+        "trade": 0
+      },
+      "eureka": "Oil is not taxed under GST yet, so this is not about oil. One reason for the jump: a weaker rupee raises the rupee value of imports, and GST is charged on that value. A weak currency can make tax collection look stronger than the economy really is.",
+      "concept": "Why a weak rupee can raise tax collection",
+      "syllabus": "GS3 · Fiscal policy, Indirect taxes",
+      "status": "press",
+      "sources": [
+        {
+          "name": "Business Today",
+          "url": "https://businesstoday.in/latest/economy/story/september-gst-collections-rise-14-7-to-rs2-04-lakh-crore-558985-2026-10-01"
+        }
+      ],
+      "published": "2026-10-01",
+      "context": "GST is India's main tax on goods and services. On imports it is charged as IGST, on the value of the goods in rupees. So when the rupee weakens, the same imported item carries more tax in rupees."
+    },
+    {
+      "id": "us-tariff",
+      "kind": "economy",
+      "category": "Trade",
+      "headline": "New 10% US tax on Indian goods covers more than half of India's exports to America",
+      "summary": "On 24 July, the US announced a 10% import tax (tariff) on Indian goods, on top of normal duties. The US says it targets goods made with forced labour, and it applies to 60 countries. About 45% of India's exports to the US are exempt, such as generic medicines, smartphones, steel, aluminium and car parts. So 55% are covered. Clothes and textiles are hit hardest. India says it still wants a trade deal with the US.",
+      "marks": [
+        "10% import tax (tariff)",
+        "About 45%",
+        "55%",
+        "Clothes and textiles"
+      ],
+      "chain": [
+        {
+          "kind": "event",
+          "label": "US adds a 10% tariff"
+        },
+        {
+          "kind": "channel",
+          "label": "Indian goods cost more in the US"
+        },
+        {
+          "kind": "variable",
+          "label": "Textile and clothing exports"
+        },
+        {
+          "kind": "outcome",
+          "label": "Jobs in small textile units at risk",
+          "added": true
+        }
+      ],
+      "impacts": {
+        "inflation": 0,
+        "growth": -1,
+        "rupee": -1,
+        "fiscal": 0,
+        "markets": 0,
+        "trade": -1
+      },
+      "eureka": "The US says the tariff is about working conditions, not trade. This shows how rules on labour and human rights are becoming new ways to restrict trade.",
+      "concept": "Trade barriers beyond import taxes",
+      "syllabus": "GS3 · External sector; GS2 · IR",
+      "status": "press",
+      "sources": [
+        {
+          "name": "Asharq Al-Awsat (Reuters)",
+          "url": "https://english.aawsat.com/node/5299974"
+        }
+      ],
+      "published": "2026-07-25",
+      "context": "The US is one of India's biggest export markets. A tariff makes Indian goods costlier for American buyers, so they may buy from other countries instead."
+    },
+    {
+      "id": "tcs",
+      "kind": "economy",
+      "category": "Companies",
+      "headline": "TCS profit rises 15%, and AI work is now a tenth of its business",
+      "summary": "TCS, India's largest IT company, made a profit of ₹13,934 crore in July–September, 14.9% more than a year earlier. Its revenue rose 11.2% to ₹73,188 crore. AI-related work now brings in $3.1 billion a year, over 10% of its revenue. It signed new deals worth $9.6 billion and added 4,258 staff. IT shares led the market on 9 October, up 3%.",
+      "marks": [
+        "₹13,934 crore",
+        "$3.1 billion",
+        "$9.6 billion",
+        "4,258"
+      ],
+      "chain": [
+        {
+          "kind": "event",
+          "label": "Rupee near 96 to the dollar"
+        },
+        {
+          "kind": "channel",
+          "label": "Each dollar earned is worth more rupees",
+          "added": true
+        },
+        {
+          "kind": "variable",
+          "label": "IT profits and service exports"
+        },
+        {
+          "kind": "outcome",
+          "label": "Service exports help pay for India's imports",
+          "added": true
+        }
+      ],
+      "impacts": {
+        "inflation": 0,
+        "growth": 1,
+        "rupee": 1,
+        "fiscal": 0,
+        "markets": 1,
+        "trade": 1
+      },
+      "eureka": "The same weak rupee that hurts oil importers helps IT companies. One exchange rate creates winners and losers at the same time. That is why the RBI tries to stop sharp swings rather than fix the rupee at one level.",
+      "concept": "Weak rupee: winners and losers",
+      "syllabus": "GS3 · Services sector, External sector",
+      "status": "press",
+      "sources": [
+        {
+          "name": "Business Today",
+          "url": "https://www.businesstoday.in/markets/stocks/story/tcs-q2-fy27-results-net-profit-rises-15-to-rs-13934-crore-declares-rs-12-dividend-560435-2026-10-08"
+        },
+        {
+          "name": "Kotak Neo (sector moves)",
+          "url": "https://www.kotakneo.com/news/market-news/sensex-and-nifty-recover-after-sharp-sell-off/"
+        }
+      ],
+      "published": "2026-10-08",
+      "context": "IT companies earn mostly in dollars but pay most of their costs in rupees. When the rupee weakens, each dollar they earn is worth more rupees."
+    },
+    {
+      "id": "gdp",
+      "kind": "economy",
+      "category": "Growth",
+      "headline": "Economy grew 7.8%, which gave the RBI room to raise rates",
+      "summary": "India's economy grew 7.8% in April–June, faster than the RBI expected. The RBI then raised its growth forecast for the year to 7.1% and raised interest rates.",
+      "marks": [
+        "7.8%",
+        "7.1%"
+      ],
+      "chain": [
+        {
+          "kind": "event",
+          "label": "Growth beats estimates"
+        },
+        {
+          "kind": "channel",
+          "label": "Economy running strong",
+          "added": true
+        },
+        {
+          "kind": "variable",
+          "label": "Less risk that higher rates cause a slowdown"
+        },
+        {
+          "kind": "outcome",
+          "label": "RBI raises rates with confidence",
+          "added": true
+        }
+      ],
+      "impacts": {
+        "inflation": 0,
+        "growth": 1,
+        "rupee": 0,
+        "fiscal": 1,
+        "markets": 1,
+        "trade": 0
+      },
+      "eureka": "Good news on growth can lead to higher interest rates. Students often think rates go up only in bad times, but a strong economy is often what makes a rate rise possible.",
+      "concept": "Balancing growth and inflation",
+      "syllabus": "GS3 · Growth and development",
+      "status": "press",
+      "sources": [
+        {
+          "name": "Republic World",
+          "url": "https://www.republicworld.com/business/india-s-gdp-grows-by-78-in-apr-jun-quarter-beats-rbi-s-estimate-2026-08-31-135949"
+        },
+        {
+          "name": "Swarajya (RBI projections)",
+          "url": "https://swarajyamag.com/economy/rbi-raises-repo-rate-to-55-per-cent-projects-fy27-growth-at-71-per-cent-and-inflation-at-52-per-cent"
+        }
+      ],
+      "published": "2026-08-31",
+      "context": "GDP growth measures how fast the economy's total output is rising. Higher interest rates usually slow growth a little, so a central bank finds it easier to raise rates when growth is strong."
+    }
+  ],
+  "concept": {
+    "term": "The impossible trinity",
+    "explain": "A country cannot have all three at once: a fixed exchange rate, money flowing freely in and out, and its own interest-rate policy. It has to give up one.",
+    "today": "India keeps money flows open: foreign investors sold ₹35,861 crore of shares in September without any restriction. The RBI also sets its own interest rate, and raised it on 7 Oct. So the exchange rate has to give: the rupee has slipped to near 96. The RBI sold dollars to slow the fall (reserves dropped $14.88 bn in one week, as reported), but it cannot hold the rupee at a fixed level.",
+    "corners": [
+      "Fixed rupee",
+      "Free money flows",
+      "Own interest rate"
+    ]
+  },
+  "rateCycle": {
+    "title": "RBI interest rate: cut in 2025, raised now",
+    "rbi": [
+      {
+        "d": "2025-01",
+        "v": 6.5
+      },
+      {
+        "d": "2025-02",
+        "v": 6.25
+      },
+      {
+        "d": "2025-04",
+        "v": 6.0
+      },
+      {
+        "d": "2025-06",
+        "v": 5.5
+      },
+      {
+        "d": "2025-12",
+        "v": 5.25
+      },
+      {
+        "d": "2026-10",
+        "v": 5.5
+      }
+    ],
+    "note": "The RBI cut its rate four times in 2025, from 6.50% to 5.25%, held it there at four meetings, then raised it on 7 Oct 2026. The US raised its rate on 16 Sep 2026.",
+    "status": "press"
+  },
+  "rupeeSides": {
+    "title": "A weak rupee (₹96): who loses, who gains",
+    "losers": [
+      "Oil companies and India's import bill",
+      "Students and families paying fees abroad",
+      "Companies with loans in dollars",
+      "Shoppers, as imported goods cost more"
+    ],
+    "winners": [
+      "IT and service exporters (TCS AI revenue: $3.1 bn)",
+      "Families receiving money from abroad",
+      "GST collected on imports",
+      "Exporters, where US tariffs allow"
+    ]
+  },
+  "watch": [
+    {
+      "date": "2026-10-12",
+      "label": "India's inflation for September",
+      "why": "Shows whether price rises are speeding up, as the RBI expects",
+      "source": "MoSPI release calendar",
+      "url": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1779709510470-ADVANCE%20RELEASE%20CALENDAR%202026-27%20Updated%2025.05.2026.pdf",
+      "official": true
+    },
+    {
+      "date": "2026-10-27",
+      "label": "US Fed interest-rate decision (27–28 Oct)",
+      "why": "If the US raises rates again, more money may leave India",
+      "source": "Federal Reserve calendar",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "official": true
+    },
+    {
+      "date": "2026-10-28",
+      "label": "India's factory output (IIP) for September",
+      "why": "Shows how factories, mines and power plants are doing",
+      "source": "MoSPI release calendar",
+      "url": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1779709510470-ADVANCE%20RELEASE%20CALENDAR%202026-27%20Updated%2025.05.2026.pdf",
+      "official": true
+    },
+    {
+      "date": "2026-11-03",
+      "label": "US midterm elections",
+      "why": "Trump's promise not to attack Iran runs until this date",
+      "source": "Al-Monitor (Reuters)",
+      "url": "https://www.al-monitor.com/originals/2026/10/trump-says-us-will-not-attack-iran-midterm-elections-november"
+    },
+    {
+      "date": "2026-11-30",
+      "label": "India's GDP for July–September",
+      "why": "The RBI expects 7.2% growth for this quarter",
+      "source": "MoSPI release calendar",
+      "url": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1779709510470-ADVANCE%20RELEASE%20CALENDAR%202026-27%20Updated%2025.05.2026.pdf",
+      "official": true
+    },
+    {
+      "date": "2026-12-02",
+      "label": "RBI interest-rate decision (2–4 Dec)",
+      "why": "Will the RBI raise rates again or pause?",
+      "source": "RBI MPC schedule",
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62422",
+      "official": true
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Crude oil is not yet taxed under GST. What can raise GST on imports even if the amount imported stays the same?",
+      "options": [
+        "A cut in customs duty",
+        "A weaker rupee, because GST on imports is charged on their rupee value",
+        "More shopping within India",
+        "Fewer export refunds"
+      ],
+      "answer": 1,
+      "why": "GST on imports (IGST) is charged on the value of the goods in rupees. When a dollar costs about 8% more rupees, the same import carries more tax. This is one reason, not the whole story, behind import GST rising 25.9% in September 2026."
+    },
+    {
+      "q": "In July 2026, while the CJP protests were growing, what did foreign investors do in Indian shares?",
+      "options": [
+        "Sold ₹15,157 crore",
+        "Bought ₹15,157 crore",
+        "Stayed flat",
+        "Sold ₹35,861 crore"
+      ],
+      "answer": 1,
+      "why": "They bought more than they sold. Protests move markets only when they might change policy, taxes or spending. The big selling of ₹35,861 crore came in September, after the US raised its rates."
+    },
+    {
+      "q": "After 7 October 2026, which RBI rate is the lowest in its band, the rate it pays banks that park money with it?",
+      "options": [
+        "Repo, 5.50%",
+        "MSF, 5.75%",
+        "SDF, 5.25%",
+        "Bank Rate, 5.75%"
+      ],
+      "answer": 2,
+      "why": "The Standing Deposit Facility (SDF), at 5.25%, is the lowest rate: what the RBI pays banks that park money with it. The highest is the Marginal Standing Facility (MSF) and Bank Rate, at 5.75%."
+    }
+  ]
+}
