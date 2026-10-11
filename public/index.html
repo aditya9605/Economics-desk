@@ -122,6 +122,10 @@ button { font: inherit; color: inherit; }
 .vstat { display: inline-flex; gap: 5px; align-items: center; }
 .card h4 { margin: 0; font: 750 20px/1.22 var(--f-display); font-stretch: 106%; text-wrap: balance; }
 .card p { margin: 0; max-width: 72ch; }
+.card-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+.kf { background: var(--accent-soft); border-radius: 10px; padding: 8px 12px; text-align: right; max-width: 210px; }
+.kf b { display: block; font: 700 19px/1.15 var(--f-mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+.kf span { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
 .card p.ctx { font-size: 14px; color: var(--muted); border-left: 2px solid var(--line); padding-left: 10px; }
 .card p.ctx b { color: var(--ink); font-weight: 650; }
 .card p strong { font-weight: 650; background: linear-gradient(transparent 62%, var(--accent-soft) 62%); }
@@ -198,6 +202,8 @@ button { font: inherit; color: inherit; }
   .flow-wrap .arrow svg { transform: rotate(90deg); }
   .compass { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .card { padding: 15px; }
+  .card-top { grid-template-columns: 1fr; }
+  .kf { text-align: left; max-width: none; }
   .rail { grid-template-columns: 1fr; }
   .order { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
 .ord { border: 0; background: var(--surface); padding: 6px 12px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: var(--muted); }
@@ -396,7 +402,7 @@ button { font: inherit; color: inherit; }
       return '<article class="card' + (s.kind === 'spillover' ? ' spill' : '') + '" id="s-' + esc(s.id) + '">' +
         '<div class="meta">' + (isNew ? '<span class="tag new">New</span>' : '') + '<span class="tag' + (s.kind === 'spillover' ? ' spill' : '') + '">' + esc(s.kind === 'spillover' ? 'Ripple effect · ' + s.category : s.category) + '</span>' +
         '<span class="vstat"><i class="sdot s-' + esc(s.status) + '"></i>' + esc(STATUS[s.status] || '') + '</span>' + (s.published ? '<span class="mono">' + esc(fmtDate(s.published)) + '</span>' : '') + '<span>' + esc(s.syllabus || '') + '</span></div>' +
-        '<h4>' + esc(s.headline) + '</h4>' +
+        (s.keyFigure ? '<div class="card-top"><h4>' + esc(s.headline) + '</h4><div class="kf"><b>' + esc(s.keyFigure.value) + '</b><span>' + esc(s.keyFigure.label) + '</span></div></div>' : '<h4>' + esc(s.headline) + '</h4>') +
         '<p>' + rich(s.summary, s.marks) + '</p>' +
         (s.context ? '<p class="ctx"><b>Background:</b> ' + esc(s.context) + '</p>' : '') +
         (s.statusNote ? '<div class="note-check">' + esc(s.statusNote) + '</div>' : '') +
@@ -591,7 +597,9 @@ button { font: inherit; color: inherit; }
     var seen = store('ed-seen') || {};
     if (state.prevSeen === undefined) state.prevSeen = Object.keys(seen).length ? seen : null;
     setStatus(live, d);
-    $('notice').hidden = !d.notice; $('notice').textContent = d.notice || '';
+    var note = d.notice || '';
+    if (live && d.pending) note = (note ? note + ' ' : '') + d.pending + ' more ' + (d.pending === 1 ? 'story is' : 'stories are') + ' waiting to be analysed and will appear through the day.';
+    $('notice').hidden = !note; $('notice').textContent = note;
     renderPulse(d); renderThread(d.thread); renderChips(d); renderCards(d); renderWeb(d);
     renderConcept(d.concept); renderRate(d.rateCycle); renderSides(d.rupeeSides); renderCal(d.watch); renderQuiz(d.quiz); renderSources(d.sources);
     (d.stories || []).forEach(function (s) { seen[s.id] = 1; });

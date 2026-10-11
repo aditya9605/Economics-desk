@@ -18,11 +18,11 @@ Blue boxes and dashed outlines mark the AI's analysis. Everything else restates 
 
 ## How it works
 
-1. Every 15 minutes the server reads the feeds in `config/sources.json`. These are 9 business feeds, PIB, the RBI and 6 general news feeds. Keyword rules keep economic news, plus non-economic news (war, protests, weather, courts, elections) that affects the economy, and drop the rest.
+1. Every 15 minutes the server reads the feeds in `config/sources.json`. These are 9 business feeds, PIB, the RBI and 6 general news feeds. Keyword rules keep English stories that are plausibly economic, plus non-economic news (war, protests, weather) that may affect the economy. They drop the rest, including stories in other languages, investing tips, tributes and ceremonies. The AI then makes the final call and rejects anything without a direct economic link.
 2. The same story from several papers is merged into one card, with "Also in" links.
 3. About every 90 minutes, the most important new stories are sent to an AI model in one request: Google Gemini on its free tier, or Claude if you add a Claude key. It writes them up in simple language with a background line, a chain of effects and a line for class. The server then checks every figure against the source text. Any figure it cannot find is labelled "Needs checking".
 4. Every 6 hours the AI writes the front page: story of the day, concept, quiz, and who gains and who loses.
-5. Stories the AI hasn't reached yet still appear with the outlet's headline and opening lines, plus the general pattern for that kind of news (oil, interest rates, tariffs, monsoon and so on). These are labelled "General pattern". This costs nothing and needs no key at all.
+5. Only stories the AI has rewritten and judged directly economic are shown. Stories waiting for analysis are counted in a note at the top. Without any AI key, the keyword-filtered stories are shown with the outlet's headline and a general pattern instead.
 6. The open page updates by itself.
 
 The free Gemini tier allows only a limited number of requests a day, and Google does not publish the exact number for every model. The app stays within 20 a day by default and pauses for an hour if Google says the limit is reached. Your actual limit is shown in Google AI Studio. If it is higher, raise `AI_CALLS_PER_DAY`.

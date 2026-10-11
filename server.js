@@ -27,7 +27,7 @@ const MODEL = PROVIDER === 'claude' ? (env.CLAUDE_MODEL || 'claude-sonnet-5-5') 
 // Free tiers allow only a small number of requests a day, so the defaults are cautious.
 const AI_CALLS_PER_DAY = +env.AI_CALLS_PER_DAY || (FREE ? 20 : 300);
 const AI_EVERY_MINUTES = +env.AI_EVERY_MINUTES || (FREE ? 90 : 15);
-const STORIES_PER_CALL = +env.STORIES_PER_CALL || 6;
+const STORIES_PER_CALL = +env.STORIES_PER_CALL || 8;
 const EDITION_HOURS = +env.EDITION_HOURS || (FREE ? 6 : 3);
 const ACCESS_KEY = env.ACCESS_KEY || '';
 const file = (v, d) => path.resolve(ROOT, v || d);
@@ -141,7 +141,7 @@ async function analyseKept(now) {
   if (now - (db.ai.lastRun || 0) < AI_EVERY_MINUTES * 60000 - 30000) return 0;
   const kept = Object.values(db.items).filter((it) => it.state === 'kept' && ageH(it, now) <= MAX_AGE_HOURS && (it.fails || 0) < 3);
   if (!kept.length) return 0;
-  kept.sort((a, b) => b.triage.priority - a.triage.priority || Date.parse(b.published || b.firstSeen) - Date.parse(a.published || a.firstSeen));
+  kept.sort((a, b) => (b.triage.priority * 4 - ageH(b, now)) - (a.triage.priority * 4 - ageH(a, now)));
   db.ai.lastRun = now;
   let n = 0;
   // Leave one request a day for the front page.
@@ -152,7 +152,9 @@ async function analyseKept(now) {
     try {
       const cards = await aiCall(now, () => ai.analyseBatch(AI, group));
       group.forEach((it, i) => {
-        if (cards[i]) { it.story = cards[i]; it.state = 'ready'; n++; }
+        const c = cards[i];
+        if (c && c.rejected) { it.state = 'rejected'; it.rejectReason = c.reason; }
+        else if (c) { it.story = c; it.state = 'ready'; n++; }
         else it.fails = (it.fails || 0) + 1;
       });
     } catch (e) { group.forEach((it) => { it.fails = (it.fails || 0) + 1; }); log('[analyse]', e.message); break; }
@@ -181,7 +183,9 @@ function rankScore(it, now) {
 
 function storyList(now, order) {
   const merged = db.merged || {};
-  const live = Object.values(db.items).filter((it) => (it.state === 'ready' || it.state === 'kept') && ageH(it, now) <= MAX_AGE_HOURS);
+  // With an AI model, only stories it has rewritten and judged relevant are shown. Without one, the keyword-filtered
+  // stories are shown with the outlet's own headline and a general pattern.
+  const live = Object.values(db.items).filter((it) => (AI ? it.state === 'ready' && it.story && !it.story.basic : (it.state === 'ready' || it.state === 'kept')) && ageH(it, now) <= MAX_AGE_HOURS);
   const extra = {};
   live.forEach((it) => {
     const p = merged[it.id];
@@ -203,6 +207,7 @@ function storyList(now, order) {
         id: it.id, kind: it.triage.spillover ? 'spillover' : 'economy', category: s.category || it.triage.category,
         headline: s.headline, summary: s.summary, context: s.context || '', marks: s.marks, chain: s.chain, impacts: s.impacts, eureka: s.eureka,
         concept: s.concept, syllabus: s.syllabus, status, statusNote: s.figureCheck || '', sources: srcs.slice(0, 5),
+        keyFigure: s.keyFigure || null,
         published: it.published || it.firstSeen, priority: it.triage.priority, basic: !!s.basic, pattern: !!s.pattern
       };
     });
@@ -311,7 +316,8 @@ function desk(order) {
   const label = new Date(now).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit' });
   return {
     mode: 'live', updatedAt: lastRefresh, editionLabel: label + ' IST',
-    notice: !AI ? 'No AI key is set. Stories show the outlet\'s own headline and opening lines, with the general pattern for that kind of news. Add a free GEMINI_API_KEY for story-by-story linkages and classroom lines.' : (base ? 'Collecting today\'s stories. Showing the researched edition of ' + (seed.editionLabel || 'the seed date') + ' until there are enough.' : (now < (db.ai.pausedUntil || 0) ? 'The free AI limit was reached, so new stories show general patterns for now. Analysis resumes automatically.' : '')),
+    notice: !AI ? 'No AI key is set. Stories show the outlet\'s own headline and opening lines, with the general pattern for that kind of news. Add a free GEMINI_API_KEY for story-by-story linkages and classroom lines.' : (base ? 'Collecting today\'s stories. Showing the researched edition of ' + (seed.editionLabel || 'the seed date') + ' until there are enough.' : (now < (db.ai.pausedUntil || 0) ? 'The free AI limit was reached for now. New stories will appear once analysis resumes, usually within the hour.' : '')),
+    pending: AI ? Object.values(db.items).filter((it) => it.state === 'kept' && ageH(it, now) <= MAX_AGE_HOURS && (it.fails || 0) < 3).length : 0,
     aiStatus: aiStatus(),
     pulse,
     thread: ed ? Object.assign({}, ed.thread, { sources: (ed.thread.storyIds || []).map((id) => stories.find((s) => s.id === id)).filter(Boolean).map((s) => s.sources[0]) }) : base ? base.thread : null,

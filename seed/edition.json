@@ -284,7 +284,11 @@
         }
       ],
       "published": "2026-10-07",
-      "context": "The repo rate is the rate at which the RBI lends money to banks. When it goes up, banks usually raise their loan and deposit rates. Through 2025 the RBI cut this rate from 6.50% to 5.25% to support growth. Prices have now been rising for ten months in a row, with oil above $100 a barrel adding to the pressure."
+      "context": "The repo rate is the rate at which the RBI lends money to banks. When it goes up, banks usually raise their loan and deposit rates. Through 2025 the RBI cut this rate from 6.50% to 5.25% to support growth. Prices have now been rising for ten months in a row, with oil above $100 a barrel adding to the pressure.",
+      "keyFigure": {
+        "value": "5.50%",
+        "label": "New repo rate"
+      }
     },
     {
       "id": "fed-hike",
@@ -340,7 +344,11 @@
         }
       ],
       "published": "2026-09-16",
-      "context": "The US Federal Reserve sets interest rates for the world's biggest economy. Its decisions move the dollar and the flow of investment around the world, so they affect India even though India's own rates are set by the RBI."
+      "context": "The US Federal Reserve sets interest rates for the world's biggest economy. Its decisions move the dollar and the flow of investment around the world, so they affect India even though India's own rates are set by the RBI.",
+      "keyFigure": {
+        "value": "3.75–4.00%",
+        "label": "US interest rate range"
+      }
     },
     {
       "id": "iran-oil",
@@ -395,7 +403,11 @@
         }
       ],
       "published": "2026-10-08",
-      "context": "India buys more than 85% of its oil from abroad. Before the war, about half of it came from the Middle East, much of it through the Strait of Hormuz. Any threat to that route raises the price India pays for oil."
+      "context": "India buys more than 85% of its oil from abroad. Before the war, about half of it came from the Middle East, much of it through the Strait of Hormuz. Any threat to that route raises the price India pays for oil.",
+      "keyFigure": {
+        "value": "2.45 million barrels a day",
+        "label": "Russian oil India buys"
+      }
     },
     {
       "id": "cjp",
@@ -456,7 +468,11 @@
         }
       ],
       "published": "2026-07-22",
-      "context": "Investors worry about protests when they might change government policy, taxes or spending. Analysts quoted at the time said these protests had not done that, so they mattered less to markets than oil prices, US interest rates and tariffs."
+      "context": "Investors worry about protests when they might change government policy, taxes or spending. Analysts quoted at the time said these protests had not done that, so they mattered less to markets than oil prices, US interest rates and tariffs.",
+      "keyFigure": {
+        "value": "₹15,157 crore",
+        "label": "Foreign buying of Indian shares, July"
+      }
     },
     {
       "id": "gst-rupee",
@@ -509,7 +525,11 @@
         }
       ],
       "published": "2026-10-01",
-      "context": "GST is India's main tax on goods and services. On imports it is charged as IGST, on the value of the goods in rupees. So when the rupee weakens, the same imported item carries more tax in rupees."
+      "context": "GST is India's main tax on goods and services. On imports it is charged as IGST, on the value of the goods in rupees. So when the rupee weakens, the same imported item carries more tax in rupees.",
+      "keyFigure": {
+        "value": "₹2.04 lakh crore",
+        "label": "GST collected in September"
+      }
     },
     {
       "id": "us-tariff",
@@ -561,7 +581,11 @@
         }
       ],
       "published": "2026-07-25",
-      "context": "The US is one of India's biggest export markets. A tariff makes Indian goods costlier for American buyers, so they may buy from other countries instead."
+      "context": "The US is one of India's biggest export markets. A tariff makes Indian goods costlier for American buyers, so they may buy from other countries instead.",
+      "keyFigure": {
+        "value": "55%",
+        "label": "Share of US-bound exports taxed"
+      }
     },
     {
       "id": "tcs",
@@ -618,7 +642,11 @@
         }
       ],
       "published": "2026-10-08",
-      "context": "IT companies earn mostly in dollars but pay most of their costs in rupees. When the rupee weakens, each dollar they earn is worth more rupees."
+      "context": "IT companies earn mostly in dollars but pay most of their costs in rupees. When the rupee weakens, each dollar they earn is worth more rupees.",
+      "keyFigure": {
+        "value": "$3.1 billion",
+        "label": "Yearly AI revenue"
+      }
     },
     {
       "id": "gdp",
@@ -673,7 +701,11 @@
         }
       ],
       "published": "2026-08-31",
-      "context": "GDP growth measures how fast the economy's total output is rising. Higher interest rates usually slow growth a little, so a central bank finds it easier to raise rates when growth is strong."
+      "context": "GDP growth measures how fast the economy's total output is rising. Higher interest rates usually slow growth a little, so a central bank finds it easier to raise rates when growth is strong.",
+      "keyFigure": {
+        "value": "7.8%",
+        "label": "Growth, April–June"
+      }
     }
   ],
   "concept": {

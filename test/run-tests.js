@@ -30,6 +30,22 @@ test('keyword rules keep economy news, keep spillovers, drop noise', () => {
   assert.strictEqual(rules.score('Heritage walk organised in old city', 'Residents joined', 'general').keep, false);
 });
 
+test('only English, directly economic stories pass the first filter', () => {
+  assert.strictEqual(rules.score('प्रधानमंत्री ने नानाजी देशमुख की जयंती पर उन्हें श्रद्धांजलि अर्पित की', '', 'econ'), null);
+  assert.strictEqual(rules.score('PM pays tribute to Maharaja Agrasen', '', 'econ'), null);
+  assert.strictEqual(rules.score("Michael Price's investing tips: avoid spreadsheet traps, be a contrarian", '', 'econ'), null);
+  assert.strictEqual(rules.score('4.2-magnitude earthquake hits Uttarkashi, second in Uttarakhand in four days', 'No damage reported', 'general'), null);
+  assert.strictEqual(rules.score('Union Minister attends flag-off of cycle rally', 'Officials joined', 'econ').keep, false);
+  assert.ok(rules.score('Emkay expects Nifty 50 to rise nearly 20% by September 2027', '', 'econ').keep);
+  const war = rules.score('Tankers attacked near Strait of Hormuz, crude jumps', '', 'general');
+  assert.ok(war.keep && war.spillover);
+});
+
+test('AI can reject a story as not directly economic', () => {
+  const r = claude.validateStory({ relevant: false, reason: 'No economic effect' }, { title: 'x', text: '' });
+  assert.ok(r.rejected);
+});
+
 test('figures not in the source are flagged', () => {
   const miss = claude.unmatchedFigures('GST rose 14.7% to ₹2.04 lakh crore, up from 1.95', 'Gross GST rose 14.7% to ₹2.04 lakh crore');
   assert.deepStrictEqual(miss, ['1.95']);
@@ -150,6 +166,8 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
       assert.ok(desk.stories.some((s) => s.kind === 'spillover'), 'spillover');
       assert.ok(desk.thread && desk.thread.nodes.length >= 2, 'thread');
       assert.ok(!desk.stories.some((s) => /cricket|Bollywood|Heritage walk/i.test(s.headline)), 'noise dropped');
+      assert.ok(!desk.stories.some((s) => /Protest at Jantar Mantar/.test(s.headline)), 'AI-rejected story hidden');
+      assert.ok(desk.stories.every((s) => !s.basic), 'only analysed stories shown');
     });
     test('key numbers update themselves from the news', () => {
       const g = desk.pulse.find((x) => x.id === 'gst');
