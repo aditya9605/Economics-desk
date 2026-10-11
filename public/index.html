@@ -106,6 +106,9 @@ button { font: inherit; color: inherit; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 11px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.order { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.ord { border: 0; background: var(--surface); padding: 6px 12px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: var(--muted); }
+.ord[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 .search { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 13px; color: var(--ink); width: 180px; max-width: 100%; }
 
 .cards { display: grid; gap: 14px; }
@@ -196,7 +199,10 @@ button { font: inherit; color: inherit; }
   .compass { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .card { padding: 15px; }
   .rail { grid-template-columns: 1fr; }
-  .search { width: 100%; }
+  .order { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.ord { border: 0; background: var(--surface); padding: 6px 12px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: var(--muted); }
+.ord[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.search { width: 100%; }
 }
 </style>
 
@@ -232,6 +238,7 @@ button { font: inherit; color: inherit; }
       <div class="feed-head">
         <h3>Linked stories</h3>
         <div class="chips" id="chips" role="group" aria-label="Filter stories"></div>
+        <div class="order" role="group" aria-label="Order stories"><button type="button" class="ord" id="ordTop" aria-pressed="true">Top</button><button type="button" class="ord" id="ordLatest" aria-pressed="false">Latest</button></div>
         <input class="search" id="q" type="search" placeholder="Search stories" aria-label="Search stories">
       </div>
       <div class="cards" id="cards"></div>
@@ -348,7 +355,9 @@ button { font: inherit; color: inherit; }
 
   function visible(d) {
     var q = state.q.toLowerCase();
-    return (d.stories || []).filter(function (s) {
+    var list = (d.stories || []).slice();
+    if (state.order === 'latest') list.sort(function (a, b) { return (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0); });
+    return list.filter(function (s) {
       if (state.filter === 'Ripple effects' && s.kind !== 'spillover') return false;
       if (state.filter !== 'All' && state.filter !== 'Ripple effects' && s.category.indexOf(state.filter) !== 0) return false;
       if (q && (s.headline + ' ' + s.summary + ' ' + s.category + ' ' + (s.concept || '')).toLowerCase().indexOf(q) < 0) return false;
@@ -358,7 +367,14 @@ button { font: inherit; color: inherit; }
 
   function fmtDate(iso) {
     var t = Date.parse(iso); if (isNaN(t)) return '';
-    return new Date(t).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+    var d = new Date(t), now = new Date();
+    var day = function (x) { return new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime(); };
+    var diff = Math.round((day(now) - day(d)) / 864e5);
+    var time = d.toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit' });
+    if (!state.live) return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+    if (diff === 0) return 'Today, ' + time;
+    if (diff === 1) return 'Yesterday, ' + time;
+    return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
   }
 
   function renderChips(d) {
@@ -543,6 +559,15 @@ button { font: inherit; color: inherit; }
   });
 
   $('q').addEventListener('input', function () { state.q = this.value; renderCards(state.data); });
+  function setOrder(o) {
+    state.order = o; store('ed-order', o);
+    $('ordTop').setAttribute('aria-pressed', String(o !== 'latest')); $('ordLatest').setAttribute('aria-pressed', String(o === 'latest'));
+    if (state.data) renderCards(state.data);
+  }
+  $('ordTop').onclick = function () { setOrder('top'); };
+  $('ordLatest').onclick = function () { setOrder('latest'); };
+  state.order = store('ed-order') === 'latest' ? 'latest' : 'top';
+  $('ordTop').setAttribute('aria-pressed', String(state.order !== 'latest')); $('ordLatest').setAttribute('aria-pressed', String(state.order === 'latest'));
 
   function setStatus(live, d) {
     var el = $('status');
@@ -562,7 +587,7 @@ button { font: inherit; color: inherit; }
   }
 
   function render(d, live) {
-    state.data = d;
+    state.data = d; state.live = !!live;
     var seen = store('ed-seen') || {};
     if (state.prevSeen === undefined) state.prevSeen = Object.keys(seen).length ? seen : null;
     setStatus(live, d);

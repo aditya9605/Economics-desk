@@ -110,8 +110,15 @@ async function aiCall(now, fn) {
 async function triageNew(now) {
   const fresh = Object.values(db.items).filter((it) => it.state === 'new');
   for (const it of fresh) {
+    if (it.state !== 'new') continue;
     const dup = findDuplicate(it, now);
-    if (dup) { it.state = 'dup'; it.dupOf = dup.id; dup.alsoIn = Array.from(new Set((dup.alsoIn || []).concat(it.sourceName))); if (it.official && !dup.official) dup.officialLink = it.link; }
+    if (!dup) continue;
+    // Keep the copy with the fuller text as the main card; the other becomes an "Also in" link.
+    let keep = dup, drop = it;
+    if (dup.state === 'new' && (it.text || '').length > (dup.text || '').length) { keep = it; drop = dup; }
+    drop.state = 'dup'; drop.dupOf = keep.id;
+    keep.alsoIn = Array.from(new Set((keep.alsoIn || []).concat(drop.sourceName, drop.alsoIn || [])));
+    if (drop.official && !keep.official) keep.officialLink = drop.link;
   }
   const todo = fresh.filter((it) => it.state === 'new');
   // Sorting headlines with AI only when requests are plentiful (Claude). On a free tier, keyword rules do it.
@@ -167,10 +174,23 @@ function basicStory(it) {
   };
 }
 
-function storyList(now) {
-  return Object.values(db.items)
-    .filter((it) => (it.state === 'ready' || it.state === 'kept') && ageH(it, now) <= MAX_AGE_HOURS)
-    .sort((a, b) => (b.triage.priority - a.triage.priority) || ((b.story ? 1 : 0) - (a.story ? 1 : 0)) || (Date.parse(b.published || b.firstSeen) - Date.parse(a.published || a.firstSeen)))
+// Ranking: important stories stay near the top for about a day, then newer news takes over.
+function rankScore(it, now) {
+  return it.triage.priority * 4 + (it.story && !it.story.basic ? 3 : 0) - ageH(it, now);
+}
+
+function storyList(now, order) {
+  const merged = db.merged || {};
+  const live = Object.values(db.items).filter((it) => (it.state === 'ready' || it.state === 'kept') && ageH(it, now) <= MAX_AGE_HOURS);
+  const extra = {};
+  live.forEach((it) => {
+    const p = merged[it.id];
+    if (p && p !== it.id && db.items[p]) (extra[p] = extra[p] || []).push({ name: 'Also in ' + it.sourceName, url: it.link });
+  });
+  const time = (it) => Date.parse(it.published || it.firstSeen);
+  return live
+    .filter((it) => !(merged[it.id] && merged[it.id] !== it.id && db.items[merged[it.id]]))
+    .sort(order === 'latest' ? (a, b) => time(b) - time(a) : (a, b) => rankScore(b, now) - rankScore(a, now))
     .slice(0, 50)
     .map((it) => {
       const s = it.story || basicStory(it);
@@ -178,25 +198,75 @@ function storyList(now) {
       const srcs = [{ name: it.sourceName, url: it.link, official: it.official }];
       if (it.officialLink) srcs.push({ name: 'Official release', url: it.officialLink, official: true });
       (it.alsoIn || []).forEach((n) => srcs.push({ name: 'Also in ' + n, url: it.link }));
+      (extra[it.id] || []).forEach((x) => srcs.push(x));
       return {
         id: it.id, kind: it.triage.spillover ? 'spillover' : 'economy', category: s.category || it.triage.category,
         headline: s.headline, summary: s.summary, context: s.context || '', marks: s.marks, chain: s.chain, impacts: s.impacts, eureka: s.eureka,
-        concept: s.concept, syllabus: s.syllabus, status, statusNote: s.figureCheck || '', sources: srcs.slice(0, 4),
+        concept: s.concept, syllabus: s.syllabus, status, statusNote: s.figureCheck || '', sources: srcs.slice(0, 5),
         published: it.published || it.firstSeen, priority: it.triage.priority, basic: !!s.basic, pattern: !!s.pattern
       };
     });
 }
 
 async function maybeEdition(stories, now) {
-  const analysed = stories.filter((s) => !s.basic && s.chain.length);
+  const analysed = stories.filter((s) => !s.basic && s.chain.length && s.status !== 'check');
   if (!AI || analysed.length < 3 || !aiAllowed(now)) return;
   const stale = now - (db.editionAt || 0) > EDITION_HOURS * 36e5;
   if (db.edition && !stale && db.analysedSinceEdition < 6) return;
   try {
-    db.edition = await aiCall(now, () => ai.edition(AI, analysed.slice(0, 12)));
-    db.editionAt = now; db.analysedSinceEdition = 0;
-    log('[edition] written');
+    const ed = await aiCall(now, () => ai.edition(AI, analysed.slice(0, 20)));
+    db.edition = ed; db.editionAt = now; db.analysedSinceEdition = 0;
+    applyEdition(ed, analysed, now);
+    log('[edition] written;', ed.sameEvent.length, 'duplicate groups,', ed.numbers.length, 'numbers');
   } catch (e) { log('[edition]', e.message); }
+}
+
+// Merge repeats of the same event, and take fresh key numbers from the news.
+function applyEdition(ed, stories, now) {
+  db.merged = db.merged || {};
+  const byId = {}; stories.forEach((s) => { byId[s.id] = s; });
+  (ed.sameEvent || []).forEach((g) => {
+    const items = g.map((id) => db.items[id]).filter(Boolean);
+    if (items.length < 2) return;
+    items.sort((a, b) => (b.official ? 1 : 0) - (a.official ? 1 : 0) || b.triage.priority - a.triage.priority || Date.parse(a.published || a.firstSeen) - Date.parse(b.published || b.firstSeen));
+    const primary = db.merged[items[0].id] || items[0].id;
+    items.forEach((it) => { if (it.id !== primary) db.merged[it.id] = primary; });
+  });
+  db.pulseNews = db.pulseNews || {};
+  (ed.numbers || []).forEach((n) => {
+    const s = byId[n.storyId]; if (!s) return;
+    db.pulseNews[n.id] = Object.assign({}, n, { published: s.published, source: s.sources[0].name, url: s.sources[0].url, headline: s.headline, at: new Date(now).toISOString() });
+  });
+}
+
+// Whether a rise in each indicator is good, bad or simply worth watching, for colouring.
+const TONE_UP = { sensex: 'good', nifty: 'good', brent: 'bad', inr: 'bad', cpi: 'bad', repo: 'watch', gdp: 'good', gst: 'good', fpi: 'good', fx: 'good', fed: 'watch' };
+function tone(id, dir) {
+  if (dir === 'flat') return 'watch';
+  const up = TONE_UP[id] || 'watch';
+  if (up === 'watch') return 'watch';
+  return dir === 'up' ? up : (up === 'good' ? 'bad' : 'good');
+}
+
+function pulseTiles(now) {
+  const base = store.load(PULSE_FILE, null) || (seed && seed.pulse) || [];
+  return base.map((t) => {
+    const tileTime = Date.parse(t.date || '') || 0;
+    const n = (db.pulseNews || {})[t.id];
+    const newsTime = n ? Date.parse(n.published) || 0 : 0;
+    const inrTime = t.id === 'inr' && liveInr ? Date.parse(liveInr.asOf) || 0 : 0;
+    if (n && newsTime > tileTime && newsTime >= inrTime && now - newsTime < Math.max(10 * 864e5, MAX_AGE_HOURS * 36e5)) {
+      return Object.assign({}, t, {
+        value: n.value, change: n.change || 'From the news', dir: n.direction, tone: tone(t.id, n.direction),
+        asOf: n.asOf || new Date(newsTime).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }), status: 'press', source: n.source, url: n.url,
+        note: 'Updated automatically from a news report: ' + n.headline, spark: null
+      });
+    }
+    if (t.id === 'inr' && liveInr && inrTime > tileTime) {
+      return Object.assign({}, t, { value: liveInr.value.toFixed(2), change: 'Daily reference rate', dir: 'flat', tone: 'watch', asOf: liveInr.asOf.replace(/ \+0000$/, ' UTC'), status: 'press', source: 'open.er-api.com market data', url: 'https://www.exchangerate-api.com/', note: 'Updated about once a day from market data. For the RBI reference rate, check the FBIL website.', spark: null });
+    }
+    return t;
+  });
 }
 
 async function fetchInr() {
@@ -229,15 +299,10 @@ function prune(now) {
 }
 
 // ---------- What the page receives ----------
-function desk() {
+function desk(order) {
   const now = Date.now();
-  const stories = storyList(now);
-  const pulse = (store.load(PULSE_FILE, null) || (seed && seed.pulse) || []).map((t) => {
-    if (t.id === 'inr' && liveInr) {
-      return Object.assign({}, t, { value: liveInr.value.toFixed(2), change: 'Daily reference rate', dir: 'flat', asOf: liveInr.asOf.replace(/ \+0000$/, ' UTC'), status: 'press', source: 'open.er-api.com market data', url: 'https://www.exchangerate-api.com/', note: 'Updated about once a day from market data. For the RBI reference rate, check the FBIL website.' });
-    }
-    return t;
-  });
+  const stories = storyList(now, order);
+  const pulse = pulseTiles(now);
   const extras = store.load(EXTRAS_FILE, {});
   const watch = (store.load(WATCH_FILE, null) || (seed && seed.watch) || []);
   const ed = db.edition;
@@ -294,7 +359,7 @@ function handler(req, res) {
   const url = new URL(req.url, 'http://x');
   if (url.pathname === '/api/health') return send(res, 200, MIME['.json'], JSON.stringify({ ok: true, ai: aiStatus(), model: AI ? MODEL : null, lastRefresh, items: Object.keys(db.items).length, sources: Object.values(sourceStatus) }));
   if (!authorised(req, url, res)) return;
-  if (url.pathname === '/api/desk') return send(res, 200, MIME['.json'], JSON.stringify(desk()));
+  if (url.pathname === '/api/desk') return send(res, 200, MIME['.json'], JSON.stringify(desk(url.searchParams.get('order') === 'latest' ? 'latest' : 'top')));
   if (url.pathname === '/events') {
     res.writeHead(200, { 'content-type': 'text/event-stream', 'cache-control': 'no-cache', connection: 'keep-alive' });
     res.write('retry: 10000\n\n'); clients.add(res);

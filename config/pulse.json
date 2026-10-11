@@ -20,7 +20,8 @@
       5.25,
       5.25,
       5.5
-    ]
+    ],
+    "date": "2026-10-07"
   },
   {
     "id": "cpi",
@@ -38,7 +39,8 @@
     "spark": [
       4.5,
       4.8
-    ]
+    ],
+    "date": "2026-09-12"
   },
   {
     "id": "fed",
@@ -52,7 +54,8 @@
     "asOf": "16 Sep 2026",
     "status": "official",
     "source": "Federal Reserve FOMC statement",
-    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+    "date": "2026-09-16"
   },
   {
     "id": "sensex",
@@ -71,7 +74,8 @@
       72480.29,
       71593.24,
       72472.33
-    ]
+    ],
+    "date": "2026-10-09"
   },
   {
     "id": "brent",
@@ -85,7 +89,8 @@
     "asOf": "9 Oct 2026, 3:37 pm",
     "status": "press",
     "source": "Kotak Neo market report",
-    "url": "https://www.kotakneo.com/news/market-news/sensex-and-nifty-recover-after-sharp-sell-off/"
+    "url": "https://www.kotakneo.com/news/market-news/sensex-and-nifty-recover-after-sharp-sell-off/",
+    "date": "2026-10-09"
   },
   {
     "id": "inr",
@@ -99,7 +104,8 @@
     "asOf": "1 Oct 2026 open",
     "status": "press",
     "source": "Kotak Neo; year-ago level from AIR",
-    "url": "https://www.kotakneo.com/news/market-news/stock-market-update-1-october-2026-sensex-nifty/"
+    "url": "https://www.kotakneo.com/news/market-news/stock-market-update-1-october-2026-sensex-nifty/",
+    "date": "2026-10-01"
   },
   {
     "id": "gdp",
@@ -113,7 +119,8 @@
     "asOf": "Released end-Aug 2026",
     "status": "press",
     "source": "MoSPI data, as reported",
-    "url": "https://www.republicworld.com/business/india-s-gdp-grows-by-78-in-apr-jun-quarter-beats-rbi-s-estimate-2026-08-31-135949"
+    "url": "https://www.republicworld.com/business/india-s-gdp-grows-by-78-in-apr-jun-quarter-beats-rbi-s-estimate-2026-08-31-135949",
+    "date": "2026-08-29"
   },
   {
     "id": "gst",
@@ -127,7 +134,8 @@
     "asOf": "Released 1 Oct 2026",
     "status": "press",
     "source": "Government data, as reported by Business Today",
-    "url": "https://businesstoday.in/latest/economy/story/september-gst-collections-rise-14-7-to-rs2-04-lakh-crore-558985-2026-10-01"
+    "url": "https://businesstoday.in/latest/economy/story/september-gst-collections-rise-14-7-to-rs2-04-lakh-crore-558985-2026-10-01",
+    "date": "2026-10-01"
   },
   {
     "id": "fpi",
@@ -141,7 +149,8 @@
     "asOf": "Sep 2026",
     "status": "press",
     "source": "NSDL data, as reported by Kotak Neo",
-    "url": "https://www.kotakneo.com/news/market-news/sensex-and-nifty-recover-after-sharp-sell-off/"
+    "url": "https://www.kotakneo.com/news/market-news/sensex-and-nifty-recover-after-sharp-sell-off/",
+    "date": "2026-10-01"
   },
   {
     "id": "fx",
@@ -155,6 +164,7 @@
     "asOf": "Week ended 18 Sep 2026",
     "status": "press",
     "source": "RBI data, as reported by Economic Times and Bloomberg (via Digg)",
-    "url": "https://digg.com/world-business/ihpq6m18"
+    "url": "https://digg.com/world-business/ihpq6m18",
+    "date": "2026-09-25"
   }
 ]

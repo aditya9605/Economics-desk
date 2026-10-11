@@ -106,6 +106,25 @@ pendingAsync.push((async () => {
   global.fetch = realFetch;
 })());
 
+
+test('front-page reply: duplicate groups and numbers are checked', () => {
+  const stories = [{ id: 's1', summary: 'Sensex rose 879 points to 72,472 on Friday.' }, { id: 's2', summary: 'Other.' }];
+  const e = claude.validateEdition({ thread: { title: 'T', nodes: [{ label: 'a' }, { label: 'b' }, { label: 'c' }] },
+    sameEvent: [['s1', 's2', 'zz'], ['s1']],
+    numbers: [{ id: 'sensex', value: '72,472', direction: 'up', storyId: 's1' }, { id: 'brent', value: '105', storyId: 's1' }, { id: 'bogus', value: '1', storyId: 's1' }] }, ['s1', 's2'], stories);
+  assert.deepStrictEqual(e.sameEvent, [['s1', 's2']]);
+  assert.strictEqual(e.numbers.length, 1);
+  assert.strictEqual(e.numbers[0].value, '72,472');
+});
+
+test('long text is shortened at a word boundary', () => {
+  const src = 'Middle East supply risks pushed crude oil prices past $100 per barrel, forcing state-run oil firms to buy dollars';
+  const s = claude.str(src, 60);
+  assert.ok(s.endsWith('…') && s.length <= 61);
+  const last = s.slice(0, -1).split(' ').pop();
+  assert.ok(src.split(/[ ,]+/).includes(last), last);
+});
+
 // ---------- End to end with the demo feeds and the mock model ----------
 function boot(port, extraEnv) {
   const dataFile = path.join(os.tmpdir(), 'edesk-' + process.pid + '-' + port + '.json');
@@ -131,6 +150,11 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
       assert.ok(desk.stories.some((s) => s.kind === 'spillover'), 'spillover');
       assert.ok(desk.thread && desk.thread.nodes.length >= 2, 'thread');
       assert.ok(!desk.stories.some((s) => /cricket|Bollywood|Heritage walk/i.test(s.headline)), 'noise dropped');
+    });
+    test('key numbers update themselves from the news', () => {
+      const g = desk.pulse.find((x) => x.id === 'gst');
+      assert.ok(g && /news report/.test(g.note), JSON.stringify(g));
+      assert.strictEqual(g.value, '2.04');
     });
     test('duplicate headlines from two outlets merge into one card', () => {
       const gst = desk.stories.filter((s) => /GST/.test(s.headline));
